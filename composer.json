@@ -1,0 +1,12 @@
+{
+    "name": "raul/twig",
+    "authors": [
+        {
+            "name": "Raul Bethencourt",
+            "email": "raul.bethencourt.pro@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.0"
+    }
+}
