@@ -12,10 +12,14 @@ if (isset($_GET['p'])) {
 }
 
 // Récupère les derniers tutoriels 
-function tutoriels () { 
+function tutoriels()
+{
     $pdo = new PDO('mysql:dbname=twig;host=mysql', 'root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
+    $tutoriels = $pdo->query('SELECT * FROM tutoriels ORDER BY id DESC LIMIT 10');
+    return $tutoriels;
 }
 
 //Rendu du template
@@ -28,7 +32,7 @@ switch ($page) {
         break;
 
     case 'home':
-        echo $twig->render('home.twig');
+        echo $twig->render('home.twig', ['tutoriels' => tutoriels()]);
         break;
 
     default:
