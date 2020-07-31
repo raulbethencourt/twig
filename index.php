@@ -11,6 +11,13 @@ if (isset($_GET['p'])) {
     $page = $_GET['p'];
 }
 
+// Récupère les derniers tutoriels 
+function tutoriels () { 
+    $pdo = new PDO('mysql:dbname=twig;host=mysql', 'root', '');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+}
+
 //Rendu du template
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
 $twig = new \Twig\Environment($loader, ['cache' => false]); // __DIR__ . '/tmp'
