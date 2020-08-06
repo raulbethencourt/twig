@@ -1,20 +1,22 @@
-{% extends "layout.twig" %}
+{% extends "with-sidebar.twig" %}
 
 {% block head %}
 	<title>Home page</title>
 {% endblock %}
 
-{% block content %}
+{% block main %}
 	<h1>Les derniers tutoriels</h1>
 
 	<div class="row">
 		{% for tutoriel in tutoriels %}
 			<div class="col-xs">
 				<div class="card">
-					<h4 class="card-title">{{ tutoriel.name | markdown }}</h4>
+					<h4 class="card-title">{{ 'Tutoriel : ' ~ tutoriel.name | markdown }} {{ loop.index }}</h4>
 				</div>
 			</div>
+			{% if loop.index is divisible by(4) %}
+				</div><div class="row">				
+			{% endif %}
 		{% endfor %}
 	</div>
-
 {% endblock %}

@@ -1,0 +1,6 @@
+{% macro input(name, label, value = null, options) %}
+	<div class="form-group {{ options.class }}">
+		<label for="{{ name }}">{{ label }}</label>
+		<input type="{{ options.type ?: 'text' }}" class="form-control" name="{{ name }}" id="{{ name }}" value="{{ value }}">
+	</div>
+{% endmacro %}

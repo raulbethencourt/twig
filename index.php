@@ -29,13 +29,18 @@ function tutoriels()
 
 //Rendu du template
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
-$twig = new \Twig\Environment($loader, ['cache' => false]); // __DIR__ . '/tmp'
+$twig = new \Twig\Environment($loader, [
+    'cache' => __DIR__ . '/tmp',
+    'debug' => true
+]); 
 
 $twig->addExtension(new MonExtension());
+$twig->addExtension(new \Twig\Extension\DebugExtension());
+$twig->addGlobal('current_page', $page);
 
 switch ($page) {
     case 'contact':
-        echo $twig->render('contact.twig');
+        echo $twig->render('contact.twig', ['name' => 'Raul', 'surname' => 'Bethencourt', 'email' => 'test@test.com']);
         break;
 
     case 'home':
