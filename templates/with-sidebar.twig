@@ -1,0 +1,15 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-8">
+            {% block main %}{% endblock %}
+        </div>
+        <div class="col-xs-4">
+            {% block sidebar %}
+            <h1>Ma sidebar</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem sint atque sequi. Necessitatibus consectetur, eos minus ab debitis ipsa, quisquam sequi perferendis dignissimos fuga officiis, sed deleniti iure quos non.</p>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

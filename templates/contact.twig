@@ -4,7 +4,30 @@
 	<title>Me contacter</title>
 {% endblock %}
 
+{% import "form.twig" as form %}
+
 {% block content %}
-	<h1>Me contacter</h1>
+
+	<h1>Me contacter {{ current_page }}</h1>
+
 	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique iusto omnis obcaecati eos dolores? Laudantium architecto, quam nihil perferendis, itaque voluptatum est dolorem illum saepe dolorum ducimus! Corporis, recusandae ex.</p>
+	<form action="?p=contact" method="post">
+		<div class="row">
+			{{ form.input('name', 'Votre nom', surname, {class: 'col-xs'})}}
+			{{ form.input('surname', 'Votre Prenom', name, {class: 'col-xs'})}}
+		</div>
+		{{ form.input('email', 'Votre email', email, {class: 'col-xs', type: 'email'})}}
+		{{ form.input('pass', 'Votre password', '', {class: 'col-xs', type: 'password'})}}
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary">Envoyer</button>
+		</div>
+	</form>
+
+	{% set var = [22, 'string', 123, 'test'] %}
+
+	<pre>
+		{{ dump(var) }}
+	</pre>
+
 {% endblock %}
+
