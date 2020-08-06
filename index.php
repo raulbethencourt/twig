@@ -3,7 +3,12 @@
 /**
  * Test twig 
  */
+
+use Michelf\MarkdownExtra;
+use Twig\TwigFunction;
+
 require __DIR__ . '/vendor/autoload.php';
+require 'MonExtension.php';
 
 //Routing 
 $page = 'home';
@@ -11,9 +16,22 @@ if (isset($_GET['p'])) {
     $page = $_GET['p'];
 }
 
+// Récupère les derniers tutoriels 
+function tutoriels()
+{
+    $pdo = new PDO('mysql:dbname=twig;host=mysql', 'root', '');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
+    $tutoriels = $pdo->query('SELECT * FROM tutoriels ORDER BY id DESC LIMIT 10');
+    return $tutoriels;
+}
+
 //Rendu du template
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
 $twig = new \Twig\Environment($loader, ['cache' => false]); // __DIR__ . '/tmp'
+
+$twig->addExtension(new MonExtension());
 
 switch ($page) {
     case 'contact':
@@ -21,7 +39,7 @@ switch ($page) {
         break;
 
     case 'home':
-        echo $twig->render('home.twig');
+        echo $twig->render('home.twig', ['tutoriels' => tutoriels()]);
         break;
 
     default:

@@ -7,4 +7,14 @@
 {% block content %}
 	<h1>Les derniers tutoriels</h1>
 
+	<div class="row">
+		{% for tutoriel in tutoriels %}
+			<div class="col-xs">
+				<div class="card">
+					<h4 class="card-title">{{ tutoriel.name | markdown }}</h4>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
 {% endblock %}
