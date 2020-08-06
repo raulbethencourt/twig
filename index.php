@@ -8,6 +8,7 @@ use Michelf\MarkdownExtra;
 use Twig\TwigFunction;
 
 require __DIR__ . '/vendor/autoload.php';
+require 'MonExtension.php';
 
 //Routing 
 $page = 'home';
@@ -30,9 +31,7 @@ function tutoriels()
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
 $twig = new \Twig\Environment($loader, ['cache' => false]); // __DIR__ . '/tmp'
 
-$twig->addFunction(new TwigFunction('markdown', function ($value) {
-    return \Michelf\MarkdownExtra::defaultTransform($value);
-}, ['is_safe' => ['html']]));
+$twig->addExtension(new MonExtension());
 
 switch ($page) {
     case 'contact':

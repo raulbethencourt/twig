@@ -11,7 +11,7 @@
 		{% for tutoriel in tutoriels %}
 			<div class="col-xs">
 				<div class="card">
-					<h4 class="card-title">{{ markdown(tutoriel.name) }}</h4>
+					<h4 class="card-title">{{ tutoriel.name | markdown }}</h4>
 				</div>
 			</div>
 		{% endfor %}
